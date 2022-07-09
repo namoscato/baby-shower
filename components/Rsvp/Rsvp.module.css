@@ -1,0 +1,78 @@
+.root {
+  background-color: #fdfdfc;
+  box-shadow: 0 0.3em 0.7em 0 rgba(16, 12, 14, 0.1);
+  box-sizing: border-box;
+  /* padding: 0; */
+  max-width: 28rem;
+  margin: 4rem auto 0;
+}
+
+.content {
+  padding: 2rem;
+}
+
+.title {
+  font-size: 2em;
+  font-weight: 500;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 0.5em;
+  font-style: italic;
+  font-weight: normal;
+}
+
+.field {
+  margin-top: 1.5em;
+}
+
+.field > label {
+  display: block;
+  font-style: italic;
+  margin-bottom: 0.5em;
+}
+
+.field > input[type="text"],
+.field > textarea {
+  box-sizing: border-box;
+  border: 2px solid #a6a6a6;
+  color: inherit;
+  display: block;
+  font-family: inherit;
+  font-size: 1.2em;
+  line-height: 2.2;
+  outline: none;
+  padding: 0 0.4em;
+  width: 100%;
+}
+
+.field > input[type="text"]:focus,
+.field > textarea:focus {
+  border-color: #0d0d0d;
+}
+
+.field > input[type="text"]:disabled,
+.field > textarea:disabled {
+  background-color: #ecece9;
+  color: #858585;
+}
+
+.submitButton {
+  background-color: #edba21;
+  border: none;
+  cursor: pointer;
+  display: block;
+  font-size: 1.3em;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 2.7;
+  width: 100%;
+}
+
+/* @media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
+} */

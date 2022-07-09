@@ -1,0 +1,24 @@
+.button {
+  background-color: #fdfdfc;
+  border: 2px solid #a6a6a6;
+  color: inherit;
+  cursor: pointer;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 1.2em;
+  line-height: 2.2;
+  text-align: center;
+  margin-right: 0.3em;
+  width: 5em;
+}
+
+.selected {
+  border-color: #0d0d0d;
+  background-color: #0d0d0d;
+  color: #fdfdfc;
+}
+
+.button:disabled {
+  background-color: #ecece9;
+  color: #858585;
+}
