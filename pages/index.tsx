@@ -5,6 +5,7 @@ import Head from "next/head";
 import Image from "next/image";
 import babyAmoscatoTitle from "../public/baby-amoscato-title.png";
 import fallFamily from "../public/fall-family.png";
+import viewBabyRegistry from "../public/view-baby-registry.png";
 import styles from "./Home.module.css";
 
 const Home: NextPage = () => {
@@ -40,6 +41,21 @@ const Home: NextPage = () => {
         <Details />
         <Rsvp />
       </main>
+      <footer className={styles.footer}>
+        <a
+          href="https://www.target.com/gift-registry/gift/amoscato"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Image
+            src={viewBabyRegistry}
+            alt="View Baby Registry"
+            priority
+            width="361"
+            height="96"
+          />
+        </a>
+      </footer>
     </div>
   );
 };

@@ -2,9 +2,8 @@
   background-color: #fdfdfc;
   box-shadow: 0 0.3em 0.7em 0 rgba(16, 12, 14, 0.1);
   box-sizing: border-box;
-  max-width: 30rem;
   margin: 4rem auto 0;
-  padding: 3rem;
+  padding: 2rem 1.5rem;
 }
 
 .title {
@@ -87,9 +86,9 @@
   cursor: not-allowed;
 }
 
-/* @media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
+@media (min-width: 35rem) {
+  .root {
+    max-width: 30rem;
+    padding: 3rem;
   }
-} */
+}
