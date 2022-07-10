@@ -1,3 +1,4 @@
+import cn from "classnames";
 import { FormEvent, useEffect, useState } from "react";
 import { AttendingInput } from "./AttendingInput";
 import { useRsvpResponse } from "./hooks/useRsvpResponse";
@@ -55,11 +56,6 @@ export const Rsvp = () => {
   };
 
   const hasSubmitted = undefined !== rsvpResponse?.attending;
-  let buttonVerb = hasSubmitted ? "Update" : "Submit";
-
-  if (isSubmitting) {
-    buttonVerb = hasSubmitted ? "Updating" : "Submitting";
-  }
 
   return (
     <form className={styles.root} onSubmit={submit}>
@@ -114,16 +110,26 @@ export const Rsvp = () => {
       </div>
       <div className={styles.footer}>
         <button
-          className={styles.submitButton}
+          className={cn(styles.submitButton, {
+            [styles.submitButtonLoading]: isSubmitting,
+          })}
           type="submit"
           disabled={isFetching || invalid || isSubmitting}
         >
-          {buttonVerb} RSVP
+          {hasSubmitted ? "Update" : "Submit"} RSVP
         </button>
-        {error && (
-          <div className={styles.error}>
+        {error ? (
+          <div className={cn(styles.footerMessage, styles.footerMessageError)}>
             There was an error! Can you try again?
           </div>
+        ) : (
+          hasSubmitted && (
+            <div className={styles.footerMessage}>
+              {rsvpResponse.attending
+                ? "We're looking forward to seeing you!"
+                : "Thanks for letting us know!"}
+            </div>
+          )
         )}
       </div>
     </form>

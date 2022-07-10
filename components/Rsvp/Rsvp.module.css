@@ -60,10 +60,13 @@
   margin-top: 1.5rem;
 }
 
-.error {
-  color: #ce3d27;
+.footerMessage {
   font-style: italic;
   margin-left: 1rem;
+}
+
+.footerMessageError {
+  color: #ce3d27;
 }
 
 .submitButton {
@@ -84,6 +87,10 @@
   border-color: #a6a6a6;
   color: #858585;
   cursor: not-allowed;
+}
+
+.submitButtonLoading {
+  cursor: progress !important;
 }
 
 @media (min-width: 35rem) {
