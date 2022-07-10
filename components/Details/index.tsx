@@ -1,8 +1,5 @@
 import styles from "./Details.module.css";
 
-// rsvp by August 5
-// regsitry https://www.target.com/gift-registry/gift/amoscato
-
 export const Details = () => {
   return (
     <div className={styles.root}>
@@ -12,13 +9,25 @@ export const Details = () => {
         11am &ndash; 2pm
       </h1>
       <div className={styles.location}>
-        <a href="http://cafenottepgh.com/" target="_blank" rel="noreferrer">
+        <a
+          href="http://cafenottepgh.com/"
+          target="_blank"
+          rel="noreferrer"
+          title="View Restaurant Website"
+        >
           Cafe Notte Restaurant
         </a>
         <br />
-        8070 Ohio River Blvd
-        <br />
-        Pittsburgh, PA 15202
+        <a
+          href="https://goo.gl/maps/yER1Lijp1h8Jggzy8"
+          target="_blank"
+          rel="noreferrer"
+          title="View in Google Maps"
+        >
+          8070 Ohio River Blvd
+          <br />
+          Pittsburgh, PA 15202
+        </a>
       </div>
     </div>
   );

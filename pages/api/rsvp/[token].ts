@@ -10,12 +10,12 @@ export default async function handler(
   res: NextApiResponse<ApiResponse<RsvpResponse>>
 ) {
   const {
-    query: { id },
+    query: { token },
     method,
   } = req;
 
-  if (!isString(id)) {
-    throw new Error('"id" is required');
+  if (!isString(token)) {
+    throw new Error("token is required");
   }
 
   if ("GET" !== method) {
@@ -33,7 +33,7 @@ export default async function handler(
   let data: RsvpResponse | null = null;
 
   try {
-    data = await fetchResponse(sheet, id);
+    data = await fetchResponse(sheet, token);
   } catch (err) {
     console.error(err);
   }
