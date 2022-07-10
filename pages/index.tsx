@@ -3,6 +3,7 @@ import { Rsvp } from "components/Rsvp";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import babyAmoscatoTitle from "../public/baby-amoscato-title.png";
 import fallFamily from "../public/fall-family.png";
 import styles from "./Home.module.css";
 
@@ -17,19 +18,24 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <header className={styles.header}>
         <Image
           src={fallFamily}
           alt="Amoscato fall family drawing"
           priority
           width="600"
-          height="525"
+          height="470"
         />
-        <h2 className={styles.subtitle}>falling in love with</h2>
-        <h1 className={styles.title}>Baby Amoscato</h1>
+        <div className={styles.title}>
+          <Image
+            src={babyAmoscatoTitle}
+            alt="falling into love with Baby Amoscato"
+            priority
+            width="533"
+            height="137"
+          />
+        </div>
       </header>
-
       <main className={styles.main}>
         <Details />
         <Rsvp />
