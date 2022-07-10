@@ -13,16 +13,22 @@ export const Rsvp = () => {
   const [attending, setAttending] = useState<boolean>();
   const [additionalNotes, setAdditionalNotes] = useState("");
 
-  const { isLoading, data } = useRsvpResponse(token);
+  const { isFetching, rsvpResponse } = useRsvpResponse(token);
   useEffect(() => {
-    setName(data?.name ?? "");
-    setAddress(data?.address ?? "");
-    setAttending(data?.attending);
-    setAdditionalNotes(data?.additionalNotes ?? "");
-  }, [data?.additionalNotes, data?.address, data?.attending, data?.name]);
+    setName(rsvpResponse?.name ?? "");
+    setAddress(rsvpResponse?.address ?? "");
+    setAttending(rsvpResponse?.attending);
+    setAdditionalNotes(rsvpResponse?.additionalNotes ?? "");
+  }, [
+    rsvpResponse?.additionalNotes,
+    rsvpResponse?.address,
+    rsvpResponse?.attending,
+    rsvpResponse?.name,
+  ]);
 
   const invalid = !name.trim().length || undefined === attending;
   const { submitRsvp, isSubmitting } = useSubmitRsvp();
+  const [error, setError] = useState(false);
   const submit = async (event: FormEvent) => {
     event.preventDefault();
 
@@ -30,9 +36,11 @@ export const Rsvp = () => {
       return;
     }
 
+    setError(false);
+
     try {
       const response = await submitRsvp({
-        token: data?.token,
+        token: rsvpResponse?.token,
         name,
         address,
         attending,
@@ -42,77 +50,82 @@ export const Rsvp = () => {
       setToken(response.token);
     } catch (error) {
       console.error(error);
+      setError(true);
     }
   };
 
-  let buttonVerb = undefined === attending ? "Submit" : "Update";
+  const hasSubmitted = undefined !== rsvpResponse?.attending;
+  let buttonVerb = hasSubmitted ? "Update" : "Submit";
 
   if (isSubmitting) {
-    buttonVerb = undefined === attending ? "Submitting" : "Updating";
+    buttonVerb = hasSubmitted ? "Updating" : "Submitting";
   }
 
   return (
     <form className={styles.root} onSubmit={submit}>
-      <div className={styles.content}>
-        <h1 className={styles.title}>
-          RSVP <span className={styles.subtitle}>by August 5</span>
-        </h1>
-        <div className={styles.field}>
-          <label htmlFor="rsvp-name">Can you attend the baby shower?</label>
-          <AttendingInput
-            value={attending}
-            onChange={setAttending}
-            disabled={isLoading}
-          />
-        </div>
-        <div className={styles.field}>
-          <label htmlFor="rsvp-name">Your name</label>
-          <input
-            id="rsvp-name"
-            type="text"
-            disabled={isLoading || !!data}
-            value={name}
-            onChange={({ target }) => {
-              setName(target.value);
-            }}
-          />
-        </div>
-        <div className={styles.field}>
-          <label htmlFor="rsvp-address">
-            Your address (for thank you cards)
-          </label>
-          <input
-            id="rsvp-address"
-            type="text"
-            disabled={isLoading}
-            value={address}
-            onChange={({ target }) => {
-              setAddress(target.value);
-            }}
-          />
-        </div>
-        <div className={styles.field}>
-          <label htmlFor="rsvp-additional-notes">
-            Additional notes or dietary restrictions
-          </label>
-          <textarea
-            id="rsvp-additional-notes"
-            disabled={isLoading}
-            value={additionalNotes}
-            onChange={({ target }) => {
-              setAdditionalNotes(target.value);
-            }}
-          />
-        </div>
+      <h1 className={styles.title}>
+        RSVP<span className={styles.subtitle}> by August 5</span>
+      </h1>
+      <div className={styles.field}>
+        <label htmlFor="rsvp-name">Can you attend the baby shower?</label>
+        <AttendingInput
+          value={attending}
+          onChange={setAttending}
+          disabled={isFetching}
+        />
       </div>
-
-      <button
-        className={styles.submitButton}
-        type="submit"
-        disabled={isLoading || invalid || isSubmitting}
-      >
-        {buttonVerb} RSVP
-      </button>
+      <div className={styles.field}>
+        <label htmlFor="rsvp-name">Your name</label>
+        <input
+          id="rsvp-name"
+          type="text"
+          required
+          disabled={isFetching || !!rsvpResponse}
+          value={name}
+          onChange={({ target }) => {
+            setName(target.value);
+          }}
+        />
+      </div>
+      <div className={styles.field}>
+        <label htmlFor="rsvp-address">Your address (for thank you cards)</label>
+        <input
+          id="rsvp-address"
+          type="text"
+          disabled={isFetching}
+          value={address}
+          onChange={({ target }) => {
+            setAddress(target.value);
+          }}
+        />
+      </div>
+      <div className={styles.field}>
+        <label htmlFor="rsvp-additional-notes">
+          Additional notes or dietary restrictions
+        </label>
+        <textarea
+          id="rsvp-additional-notes"
+          disabled={isFetching}
+          value={additionalNotes}
+          onChange={({ target }) => {
+            setAdditionalNotes(target.value);
+          }}
+        />
+      </div>
+      <div className={styles.footer}>
+        <button
+          className={styles.submitButton}
+          type="submit"
+          disabled={isFetching || invalid || isSubmitting}
+        >
+          {buttonVerb} RSVP
+        </button>
+        {error && (
+          <div className={styles.error}>
+            There was an error! Can you try again?
+          </div>
+        )}
+      </div>
     </form>
   );
 };

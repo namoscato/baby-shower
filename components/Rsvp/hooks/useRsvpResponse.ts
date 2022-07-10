@@ -3,20 +3,19 @@ import { ApiResponse } from "pages/api/rsvp";
 import useSWR from "swr";
 
 interface Response {
-  isLoading: boolean;
-  data: RsvpResponse | null;
+  isFetching: boolean;
+  rsvpResponse: RsvpResponse | null;
 }
 
 export function useRsvpResponse(token: string | undefined): Response {
   const { data, error } = useSWR<ApiResponse<RsvpResponse>>(
     token ? `/api/rsvp/${token}` : null,
-    fetcher,
-    { revalidateOnFocus: false, revalidateOnReconnect: false }
+    fetcher
   );
 
   return {
-    isLoading: !!token && !error && !data,
-    data: data?.data ?? null,
+    isFetching: !!token && !error && !data,
+    rsvpResponse: data?.data ?? null,
   };
 }
 

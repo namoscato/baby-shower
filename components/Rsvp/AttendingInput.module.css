@@ -1,6 +1,7 @@
 .button {
   background-color: #fdfdfc;
   border: 2px solid #a6a6a6;
+  box-sizing: border-box;
   color: inherit;
   cursor: pointer;
   display: inline-block;
