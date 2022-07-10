@@ -3,9 +3,9 @@ import { Rsvp } from "components/Rsvp";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import babyAmoscatoTitle from "../public/baby-amoscato-title.png";
-import fallFamily from "../public/fall-family.png";
-import viewBabyRegistry from "../public/view-baby-registry.png";
+import babyAmoscatoTitle from "../public/images/baby-amoscato-title.png";
+import fallFamily from "../public/images/fall-family.png";
+import viewBabyRegistry from "../public/images/view-baby-registry.png";
 import styles from "./Home.module.css";
 
 const Home: NextPage = () => {
@@ -18,6 +18,10 @@ const Home: NextPage = () => {
           content="You are invited to a baby shower honoring Tesin Amoscato on September 4, 2022 in Pittsburgh, Pennsylvania."
         />
         <link rel="icon" href="/favicon.ico" />
+        <meta
+          property="og:image"
+          content={`${process.env.VERCEL_URL ?? ""}/images/og-image.jpg`}
+        />
       </Head>
       <header className={styles.header}>
         <Image
