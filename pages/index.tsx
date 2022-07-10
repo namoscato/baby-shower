@@ -15,7 +15,7 @@ const Home: NextPage = () => {
         <title>Tesin&rsquo;s Baby Shower</title>
         <meta
           name="description"
-          content="You are invited to a baby shower honoring Tesin Amoscato on September 4, 2022 in Pittsburgh, Pennsylvania."
+          content="You are invited to Tesin's baby shower on September 4, 2022 in Pittsburgh, Pennsylvania."
         />
       </Head>
       <header className={styles.header}>
