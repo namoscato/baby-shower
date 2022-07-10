@@ -17,11 +17,6 @@ const Home: NextPage = () => {
           name="description"
           content="You are invited to a baby shower honoring Tesin Amoscato on September 4, 2022 in Pittsburgh, Pennsylvania."
         />
-        <link rel="icon" href="/favicon.ico" />
-        <meta
-          property="og:image"
-          content={`${process.env.VERCEL_URL ?? ""}/images/og-image.jpg`}
-        />
       </Head>
       <header className={styles.header}>
         <Image
