@@ -51,7 +51,7 @@ const Home: NextPage = () => {
             src={viewBabyRegistry}
             alt="View Baby Registry"
             priority
-            width="361"
+            width="333"
             height="96"
           />
         </a>
