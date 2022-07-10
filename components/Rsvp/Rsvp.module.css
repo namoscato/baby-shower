@@ -1,0 +1,101 @@
+.root {
+  background-color: #fdfdfc;
+  box-shadow: 0 0.3em 0.7em 0 rgba(16, 12, 14, 0.1);
+  box-sizing: border-box;
+  margin: 4rem auto 0;
+  padding: 2rem 1.5rem;
+}
+
+.title {
+  font-size: 2.2em;
+  font-weight: 500;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: normal;
+}
+
+.field {
+  margin-top: 1.5rem;
+}
+
+.field > label {
+  display: block;
+  font-style: italic;
+  margin-bottom: 0.5em;
+}
+
+.field > input,
+.field > textarea {
+  box-sizing: border-box;
+  border: 2px solid #a6a6a6;
+  color: inherit;
+  display: block;
+  font-family: inherit;
+  font-size: 1.2em;
+  line-height: 1.5;
+  outline: none;
+  padding: 0.3em 0.4em;
+  width: 100%;
+}
+
+.field > input:focus,
+.field > textarea:focus {
+  border-color: #0d0d0d;
+}
+
+.field > input:disabled,
+.field > textarea:disabled {
+  background-color: #ecece9;
+  color: #858585;
+  cursor: not-allowed;
+}
+
+.footer {
+  align-items: center;
+  display: flex;
+  margin-top: 1.5rem;
+}
+
+.footerMessage {
+  font-style: italic;
+  margin-left: 1rem;
+}
+
+.footerMessageError {
+  color: #ce3d27;
+}
+
+.submitButton {
+  background-color: #edba21;
+  border: 2px solid #534216;
+  cursor: pointer;
+  display: block;
+  font-size: 1.3em;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 2.7;
+  padding: 0 1em;
+  white-space: nowrap;
+}
+
+.submitButton:disabled {
+  background-color: #ecece9;
+  border-color: #a6a6a6;
+  color: #858585;
+  cursor: not-allowed;
+}
+
+.submitButtonLoading {
+  cursor: progress !important;
+}
+
+@media (min-width: 35rem) {
+  .root {
+    max-width: 30rem;
+    padding: 3rem;
+  }
+}
