@@ -29,7 +29,9 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content="#eeede0" />
           <meta
             property="og:image"
-            content={`${process.env.VERCEL_URL ?? ""}/images/og-image.jpg`}
+            content={`https://${
+              process.env.VERCEL_URL ?? ""
+            }/images/og-image.jpg`}
           />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
