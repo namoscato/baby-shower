@@ -60,7 +60,7 @@ export const Rsvp = () => {
   return (
     <form className={styles.root} onSubmit={submit}>
       <h1 className={styles.title}>
-        RSVP<span className={styles.subtitle}> by August 10</span>
+        RSVP<span className={styles.subtitle}> by August 21</span>
       </h1>
       <div className={styles.field}>
         <label htmlFor="rsvp-name">Can you attend the baby shower?</label>
