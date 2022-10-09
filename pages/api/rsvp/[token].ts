@@ -27,7 +27,7 @@ export default async function handler(
 
   const sheet = await loadSheet(
     String(process.env.GOOGLE_SHEETS_DOCUMENT_ID),
-    String(process.env.GOOGLE_SHEETS_SHEET_ID)
+    String(process.env.GOOGLE_SHEETS_RSVP_SHEET_ID)
   );
 
   let data: RsvpResponse | null = null;
