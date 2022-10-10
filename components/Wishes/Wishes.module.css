@@ -1,0 +1,48 @@
+.content {
+  margin-bottom: -3rem;
+  position: relative;
+  transform: translateY(-3rem);
+}
+
+.card {
+  background-color: #fdfdfc;
+  box-shadow: 0 0.3em 0.7em 0 rgba(16, 12, 14, 0.1);
+  box-sizing: border-box;
+  font-size: 1.2em;
+  font-weight: 500;
+  line-height: 1.6;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list > li {
+  margin-bottom: 1em;
+}
+
+.list > li:last-child {
+  margin-bottom: 0;
+}
+
+.prompt {
+  font-size: 0.75em;
+  font-style: italic;
+  font-weight: normal;
+}
+
+@media (min-width: 35rem) {
+  .content {
+    margin-bottom: 1rem;
+  }
+
+  .card {
+    max-width: 30rem;
+    min-height: 56rem;
+    padding: 3rem;
+  }
+}
