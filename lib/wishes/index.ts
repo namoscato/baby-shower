@@ -3,8 +3,8 @@ import { loadSheet } from "lib/googleSheet";
 import { Wish, WishResponse } from "./types";
 
 export async function fetchWishes(
-  documentId: string,
-  sheetId: string
+  documentId = String(process.env.GOOGLE_SHEETS_DOCUMENT_ID),
+  sheetId = String(process.env.GOOGLE_SHEETS_WISHES_SHEET_ID)
 ): Promise<WishResponse[]> {
   const sheet = await loadSheet(documentId, sheetId);
   const rows = await sheet.getRows();
@@ -12,7 +12,7 @@ export async function fetchWishes(
   return rows.map(wishFromRow);
 }
 
-function wishFromRow(row: GoogleSpreadsheetRow): WishResponse {
+function wishFromRow(row: GoogleSpreadsheetRow, id: number): WishResponse {
   const wishes: Wish[] = [];
 
   for (const prompt of Object.keys(row)) {
@@ -23,5 +23,5 @@ function wishFromRow(row: GoogleSpreadsheetRow): WishResponse {
     }
   }
 
-  return { wishes };
+  return { id, wishes };
 }

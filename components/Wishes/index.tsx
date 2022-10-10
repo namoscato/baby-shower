@@ -1,5 +1,6 @@
 import { WishResponse } from "lib/wishes/types";
-import { useCallback, useState } from "react";
+import { shuffle } from "lodash";
+import { useCallback, useEffect, useState } from "react";
 import { CardNavigation } from "./CardNavigation";
 import { DesktopPagination } from "./DesktopPagination";
 import { MobilePagination } from "./MobilePagination";
@@ -9,9 +10,27 @@ interface Props {
   wishes: WishResponse[];
 }
 
-export const Wishes = ({ wishes }: Props) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const activeWishes = wishes[activeIndex].wishes;
+export const Wishes = (props: Props) => {
+  const [wishes, setWishes] = useState<WishResponse[]>([]);
+  useEffect(() => {
+    setWishes(shuffle(props.wishes));
+  }, [props.wishes]);
+
+  const [activeIndex, setActiveIndex] = useState(-1);
+  useEffect(() => {
+    const index = wishes.findIndex(
+      (wish) => hashFromWish(wish) === window.location.hash
+    );
+
+    setActiveIndex(-1 === index ? 0 : index);
+  }, [wishes]);
+
+  const activeWish = wishes[activeIndex] as WishResponse | undefined;
+  useEffect(() => {
+    if (activeWish) {
+      history.replaceState(null, "", hashFromWish(activeWish));
+    }
+  }, [activeWish]);
 
   const next = useCallback(() => {
     setActiveIndex((prevValue) => {
@@ -38,7 +57,7 @@ export const Wishes = ({ wishes }: Props) => {
       <div className={styles.content}>
         <div className={styles.card}>
           <ul className={styles.list}>
-            {activeWishes.map(({ prompt, response }) => (
+            {activeWish?.wishes.map(({ prompt, response }) => (
               <li key={prompt}>
                 <div className={styles.prompt}>{prompt}…</div>
                 <div className={styles.answer}>{response}</div>
@@ -57,3 +76,7 @@ export const Wishes = ({ wishes }: Props) => {
     </>
   );
 };
+
+function hashFromWish({ id }: WishResponse): string {
+  return `#${id}`;
+}

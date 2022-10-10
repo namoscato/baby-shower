@@ -45,10 +45,7 @@ export default function WishesPage({ wishes }: Props) {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const wishes = await fetchWishes(
-    String(process.env.GOOGLE_SHEETS_DOCUMENT_ID),
-    String(process.env.GOOGLE_SHEETS_WISHES_SHEET_ID)
-  );
+  const wishes = await fetchWishes();
 
   return {
     props: { wishes },

@@ -11,6 +11,7 @@ export const WISH_PROMPTS = [
 ] as const;
 
 export interface WishResponse {
+  id: number;
   wishes: Wish[];
 }
 

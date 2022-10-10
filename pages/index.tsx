@@ -1,13 +1,21 @@
 import { Details } from "components/Details";
 import { Header } from "components/Layout/Header";
 import { Rsvp } from "components/Rsvp";
+import { WishPreview } from "components/WishPreview";
+import { fetchWishes } from "lib/wishes";
+import { WishResponse } from "lib/wishes/types";
+import { GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import babyAmoscatoTitle from "../public/images/baby-amoscato-title.png";
 import viewBabyRegistry from "../public/images/view-baby-registry.png";
 import styles from "./Home.module.css";
 
-export default function HomePage() {
+interface Props {
+  wishes: WishResponse[];
+}
+
+export default function HomePage({ wishes }: Props) {
   return (
     <>
       <Head>
@@ -17,6 +25,7 @@ export default function HomePage() {
           content="You are invited to Tesin's baby shower on September 4, 2022 in Pittsburgh, Pennsylvania."
         />
       </Head>
+      <WishPreview wishes={wishes} />
       <Header>
         <Image
           src={babyAmoscatoTitle}
@@ -48,3 +57,11 @@ export default function HomePage() {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const wishes = await fetchWishes();
+
+  return {
+    props: { wishes },
+  };
+};

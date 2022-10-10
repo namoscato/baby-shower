@@ -1,0 +1,27 @@
+.root {
+  background-color: rgb(13 13 13 / 8%);
+  box-shadow: inset 0 0 0.1em 0.1em rgb(13 13 13 / 7%);
+  color: inherit;
+  display: block;
+  font-size: 1.1em;
+  font-style: italic;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  padding: 1em;
+  text-align: center;
+  text-decoration: none;
+}
+
+.root > sub {
+  vertical-align: baseline;
+}
+
+@media (min-width: 35rem) {
+  .root {
+    font-size: 1.3em;
+  }
+
+  .root > sub {
+    vertical-align: sub;
+  }
+}
